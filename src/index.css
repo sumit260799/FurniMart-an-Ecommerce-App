@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Poppins&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 *,
 ::after,
 ::before {
@@ -7,24 +11,26 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f8fafc;
 }
 :root {
   /* dark shades of primary color*/
-  --clr-primary-1: #2024f7;
-  --clr-primary-2: #393cf5;
-  --clr-primary-3: #4b4ef9;
-  --clr-primary-4: #5355f0;
+  --clr-main: #324b60;
+  --clr-main-2: #1a3652;
+  --clr-primary-1: #0099ff;
+  --clr-primary-2: #0790f9;
+  --clr-primary-3: #4f7088;
+  --clr-primary-4: #2588ce;
   /* primary/main color */
-  --clr-primary-5: #6366f1;
+  --clr-primary-5: #2b7fb6;
   /* lighter shades of primary color */
-  --clr-primary-6: #7f81fa;
-  --clr-primary-7: #7d7ff4;
-  --clr-primary-8: #9597f8;
-  --clr-primary-9: #9fa1fa;
-  --clr-primary-10: #a5a7f5;
+  --clr-primary-6: #367fac;
+  --clr-primary-7: #3776a0de;
+  --clr-primary-8: #3a79a3;
+  --clr-primary-9: #aed7f1;
+  --clr-primary-10: #ebf2f6;
+  --clr-sidebar: #eff3f5;
   /* darkest grey - used for headings */
   --clr-grey-1: hsl(209, 61%, 16%);
   --clr-grey-2: hsl(211, 39%, 23%);
@@ -37,7 +43,7 @@ body {
   --clr-grey-8: hsl(210, 31%, 80%);
   --clr-grey-9: hsl(212, 33%, 89%);
   --clr-grey-10: hsl(210, 36%, 96%);
-  --clr-white: #fff;
+  --clr-white: #0b3c5b;
   --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
   --clr-green-dark: hsl(125, 67%, 44%);
@@ -61,7 +67,7 @@ a {
   text-align: center;
 }
 .title .underline {
-  width: 6rem;
+  width: 8rem;
   height: 0.25rem;
   background: #49a6e9;
   background: var(--clr-primary-5);
@@ -154,12 +160,15 @@ p {
 .text-center {
   text-align: center;
 }
+/* .loading */
 @keyframes spinner {
   to {
     transform: rotate(360deg);
   }
 }
-
+.price {
+  @apply text-[#2b7fb6];
+}
 .loading {
   width: 6rem;
   height: 6rem;
@@ -169,4 +178,41 @@ p {
   border: 4px solid #ccc;
   border-top-color: var(--clr-primary-5);
   animation: spinner 0.6s linear infinite;
+}
+
+/* Error page */
+.emoji-404 {
+  position: relative;
+  animation: mymove 2.5s infinite;
+}
+
+@keyframes mymove {
+  33% {
+    top: 0px;
+  }
+  66% {
+    top: 20px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+#summary {
+  background-color: #f6f6f6;
+}
+.color-btn {
+  @apply w-6 h-6  focus:outline-none rounded-full border-2 bg-gray-700 text-white cursor-pointer opacity-70 flex mr-[0.5rem] items-center justify-center;
+}
+footer {
+  z-index: 999;
+  overflow: hidden;
+}
+/* CSS for screens with a max-width of 700px */
+@media (max-width: 700px) {
+  /* Set the button size to small */
+  .amount-button {
+    font-size: small;
+    padding: 0;
+    border: none;
+  }
 }

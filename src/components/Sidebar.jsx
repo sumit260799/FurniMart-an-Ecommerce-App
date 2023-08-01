@@ -1,9 +1,10 @@
 import { links } from "../utils/constants";
 import { FaTimes } from "react-icons/fa";
 import styled from "styled-components";
-
+import logo from "../assets/logo.png";
 import { useProductsContext } from "../context/products_context";
 import { Link } from "react-router-dom";
+import CartButtons from "./CartButtons";
 const Sidebar = () => {
   const { isSidebarOpen, closeSidebar } = useProductsContext();
 
@@ -13,7 +14,7 @@ const Sidebar = () => {
         className={`${isSidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}
       >
         <div className="sidebar-header">
-          <img src="" alt="" className="logo" />
+          <img src={logo} alt="" className="logo" />
           <button className="close-btn" onClick={closeSidebar}>
             <FaTimes />
           </button>
@@ -30,6 +31,7 @@ const Sidebar = () => {
             );
           })}
         </ul>
+        <CartButtons />
       </aside>
     </SidebarContainer>
   );
@@ -50,7 +52,7 @@ const SidebarContainer = styled.div`
     color: var(--clr-primary-5);
     transition: var(--transition);
     cursor: pointer;
-    margin: 0.2rem 0.7rem 0 0;
+    margin: 0.2rem 0 0 0;
   }
   .close-btn:hover {
     color: var(--clr-red-light);
@@ -72,7 +74,7 @@ const SidebarContainer = styled.div`
   .links a:hover {
     padding: 1rem 1.5rem;
     padding-left: 2rem;
-    background: var(--clr-grey-10);
+    background: var(--clr-grey-9);
     color: var(--clr-grey-2);
   }
   .sidebar {
@@ -81,7 +83,7 @@ const SidebarContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--clr-white);
+    background: var(--clr-sidebar);
     transition: var(--transition);
     transform: translate(-100%);
     z-index: -1;
@@ -89,6 +91,14 @@ const SidebarContainer = styled.div`
   .show-sidebar {
     transform: translate(0%);
     z-index: 999;
+  }
+  .cart-btn-wrapper {
+    margin: 2rem auto;
+  }
+  @media screen and (min-width: 992px) {
+    .sidebar {
+      display: none;
+    }
   }
 `;
 export default Sidebar;

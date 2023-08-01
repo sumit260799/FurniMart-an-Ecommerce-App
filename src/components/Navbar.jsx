@@ -2,6 +2,8 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { links } from "../utils/constants";
+import logo from "../assets/logo.png";
+import CartButtons from "./CartButtons";
 import { useProductsContext } from "../context/products_context";
 const Navbar = () => {
   const { openSidebar } = useProductsContext();
@@ -10,7 +12,7 @@ const Navbar = () => {
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
-            <h2>Store</h2>
+            <img src={logo} alt="" />
           </Link>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
@@ -29,12 +31,14 @@ const Navbar = () => {
             <Link to="/checkout">checkout</Link>
           </li>
         </ul>
+        <CartButtons />
       </div>
     </NavContainer>
   );
 };
 
 const NavContainer = styled.nav`
+  z-index: 50;
   height: 5rem;
   display: flex;
   align-items: center;

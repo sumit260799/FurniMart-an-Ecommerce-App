@@ -1,11 +1,32 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar, Sidebar } from "./components";
+import { Navbar, Sidebar, Footer } from "./components";
+import {
+  Home,
+  AboutPage,
+  ErrorPage,
+  SingleProductPage,
+  CartPage,
+  AuthWrapper,
+  ProductPage,
+} from "./pages";
+
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Sidebar />
-    </Router>
+    <AuthWrapper>
+      <Router>
+        <Navbar />
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="*" element={<ErrorPage />} />
+          <Route path="products/:id" element={<SingleProductPage />} />
+          <Route path="cart" element={<CartPage />} />
+          <Route path="products" element={<ProductPage />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </AuthWrapper>
   );
 };
 
