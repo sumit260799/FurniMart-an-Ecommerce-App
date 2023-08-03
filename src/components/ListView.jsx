@@ -1,21 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../utils/formatPrice";
+
 const ListView = ({ products }) => {
   return (
-    <div className="flex flex-wrap justify-center">
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => {
         const { id, image, name, price, description } = product;
         return (
           <article
             key={id}
-            className="flex bg-white rounded-lg overflow-hidden shadow-md mb-5 transition-transform transform hover:scale-105"
+            className="flex flex-col bg-white rounded-lg overflow-hidden shadow-md transition-transform transform hover:scale-105"
           >
             <div className="flex-shrink-0">
               <img
                 src={image}
                 alt={name}
-                className="w-32 h-40 object-cover rounded-l-lg"
+                className="w-full h-48 object-cover rounded-t-lg"
               />
             </div>
             <div className="p-4 flex flex-col flex-1">
@@ -25,8 +26,8 @@ const ListView = ({ products }) => {
                   {formatPrice(price)}
                 </h5>
               </div>
-              <p className="mt-2 text-gray-600 flex-1">
-                {description.substring(0, 150)}...
+              <p className="mt-2 text-gray-600 flex-1 line-clamp-3">
+                {description}
               </p>
               <div className="mt-4">
                 <Link

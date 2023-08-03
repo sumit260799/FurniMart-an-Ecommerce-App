@@ -2,19 +2,29 @@ import React from "react";
 import GridView from "./GridView";
 import ListView from "./ListView";
 import { UseFilterContext } from "../context/filter_context";
+
 const ProductList = () => {
   const { filter_products: products, Grid_View } = UseFilterContext();
+
   if (products.length < 1) {
     return (
-      <h5 style={{ textTransform: "none" }}>
-        Sorry, np products matched your search.
-      </h5>
+      <div className="text-center py-4">
+        <h5 className="text-red-600 text-lg font-bold mt-5">
+          Sorry, no products matched your search.
+        </h5>
+      </div>
     );
   }
-  if (Grid_View === false) {
-    return <ListView products={products} />;
-  }
-  return <GridView products={products} />;
+
+  return (
+    <div className="grid gap-4">
+      {Grid_View === false ? (
+        <ListView products={products} />
+      ) : (
+        <GridView products={products} />
+      )}
+    </div>
+  );
 };
 
 export default ProductList;
