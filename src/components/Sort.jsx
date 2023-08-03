@@ -1,56 +1,56 @@
 import React from "react";
-import { UseFilterContext } from "../context/filter_context";
+import { useFilterContext } from "../context/filter_context";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 
 const Sort = () => {
   const {
     filter_products: products,
-    Grid_View,
+    grid_view,
     setGridView,
     setListView,
     sort,
     updateSort,
-  } = UseFilterContext();
+  } = useFilterContext();
 
   return (
-    <div className="sm:flex items-center justify-between space-x-4 mb-6">
-      <div className="flex items-center space-x-4">
+    <div className="sort-container p-4 border rounded bg-white mb-4">
+      <div className="flex flex-row justify-center mb-2">
         <button
-          className={`rounded-full p-2 ${
-            Grid_View ? "bg-blue-500 text-white" : "bg-gray-200"
-          }`}
           onClick={setGridView}
+          className={`flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 ${
+            grid_view ? "active-btn" : ""
+          }`}
         >
           <BsFillGridFill />
         </button>
         <button
-          className={`rounded-full p-2 ${
-            !Grid_View ? "bg-blue-500 text-white" : "bg-gray-200"
-          }`}
           onClick={setListView}
+          className={`flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 ${
+            !grid_view ? "active-btn" : ""
+          }`}
         >
           <BsList />
         </button>
-        <hr className="border-2 flex-grow" />
-        <form className="flex items-center">
-          <label htmlFor="sort" className="mr-2">
-            Sort by:
-          </label>
-          <select
-            className="p-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
-            name="sort"
-            id="sort"
-            value={sort}
-            onChange={updateSort}
-          >
-            <option value="price-lowest">Price (Lowest)</option>
-            <option value="price-highest">Price (Highest)</option>
-            <option value="z-a">Name (Z-A)</option>
-            <option value="a-z">Name (A-Z)</option>
-          </select>
-        </form>
       </div>
-      {/* <p className="ml-4">{products.length} products found</p> */}
+      <p className="text-center mb-2">{products.length} products found</p>
+      <hr className="mb-2" />
+      <form>
+        <label htmlFor="sort" className="font-bold block">
+          Sort by
+        </label>
+        <select
+          name="sort"
+          id="sort"
+          value={sort}
+          onChange={updateSort}
+          className="sort-input w-full p-1 text-sm border rounded"
+        >
+          <option value="price-lowest">Price (Lowest)</option>
+          <option value="price-highest">Price (Highest)</option>
+          <option value="name-a">Name (A - Z)</option>
+          <option value="name-z">Name (Z - A)</option>
+        </select>
+      </form>
     </div>
   );
 };

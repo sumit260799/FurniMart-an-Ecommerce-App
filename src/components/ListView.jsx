@@ -1,48 +1,69 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { formatPrice } from "../utils/formatPrice";
-
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 const ListView = ({ products }) => {
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <Wrapper>
       {products.map((product) => {
         const { id, image, name, price, description } = product;
         return (
-          <article
-            key={id}
-            className="flex flex-col bg-white rounded-lg overflow-hidden shadow-md transition-transform transform hover:scale-105"
-          >
-            <div className="flex-shrink-0">
-              <img
-                src={image}
-                alt={name}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-            </div>
-            <div className="p-4 flex flex-col flex-1">
-              <div>
-                <h4 className="text-xl font-semibold">{name}</h4>
-                <h5 className="text-lg font-medium text-gray-700 mt-1">
-                  {formatPrice(price)}
-                </h5>
-              </div>
-              <p className="mt-2 text-gray-600 flex-1 line-clamp-3">
-                {description}
-              </p>
-              <div className="mt-4">
-                <Link
-                  to={`/products/${id}`}
-                  className="inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded transition-colors duration-300"
-                >
+          <article key={id}>
+            <img src={image} alt={name} />
+            <div>
+              <h4>{name}</h4>
+              <h5 className="price">{formatPrice(price)}</h5>
+              <p>{description.substring(0, 150)}...</p>
+              <Link to={`/products/${id}`}>
+                <Button size="small" variant="outlined">
                   Details
-                </Link>
-              </div>
+                </Button>
+              </Link>
             </div>
           </article>
         );
       })}
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.section`
+  display: grid;
+  row-gap: 3rem;
+
+  img {
+    width: 100%;
+    display: block;
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+  }
+  h4 {
+    margin-bottom: 0.5rem;
+  }
+  .price {
+    color: var(--clr-primary-6);
+    margin-bottom: 0.75rem;
+  }
+  p {
+    max-width: 45em;
+    margin-bottom: 1rem;
+  }
+  .btn {
+    font-size: 0.5rem;
+    padding: 0.25rem 0.5rem;
+  }
+  @media (min-width: 992px) {
+    article {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 2rem;
+      align-items: center;
+    }
+  }
+`;
 
 export default ListView;

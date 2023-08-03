@@ -7,6 +7,9 @@ import Footer from "./Footer";
 import FeaturedProduct from "./FeaturedProduct";
 import ExploreFurnitures from "./ExploreFurnitures";
 import CartContent from "./CartContent";
+import Filters from "./Filters";
+import Sort from "./Sort";
+import ProductList from "./ProductList";
 export {
   Navbar,
   Sidebar,
@@ -16,5 +19,8 @@ export {
   ExploreFurnitures,
   Services,
   CartContent,
+  Filters,
+  Sort,
+  ProductList,
   Footer,
 };

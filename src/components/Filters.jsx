@@ -1,9 +1,10 @@
 import React from "react";
-import { UseFilterContext } from "../context/filter_context";
-import { getUniqueValues } from "../utils/formatPrice";
+import { useFilterContext } from "../context/filter_context";
+import { getUniqueValues, formatPrice } from "../utils/formatPrice";
 import { FaCheck } from "react-icons/fa";
-import { formatPrice } from "../utils/formatPrice";
-const Filters = () => {
+import { Button } from "@mui/material";
+
+export default function Filters() {
   const {
     filters: {
       text,
@@ -15,136 +16,148 @@ const Filters = () => {
       max_price,
       shipping,
     },
-    all_products,
     updateFilters,
+    all_products,
     clearFilters,
-  } = UseFilterContext();
+  } = useFilterContext();
   const categories = getUniqueValues(all_products, "category");
   const companies = getUniqueValues(all_products, "company");
   const colors = getUniqueValues(all_products, "colors");
-
   return (
-    <div className="p-4 bg-white rounded shadow-md">
-      <form onSubmit={(e) => e.preventDefault()}>
-        <div className="mb-4">
-          <input
-            className="border border-gray-300 rounded-md p-2 bg-gray-100 w-full"
-            type="text"
-            name="text"
-            value={text}
-            placeholder="Search"
-            onChange={updateFilters}
-          />
-        </div>
-        <div className="mb-4">
-          <h5 className="font-semibold">Category</h5>
-          <div className="flex flex-col">
-            {categories.map((c, index) => {
-              return (
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="content">
+        <form onSubmit={(e) => e.preventDefault()}>
+          {/* search input */}
+          <div className="form-control mb-4">
+            <input
+              type="text"
+              name="text"
+              value={text}
+              placeholder="Search"
+              onChange={updateFilters}
+              className="search-input w-full px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
+            />
+          </div>
+          {/* end of search input */}
+          {/* category */}
+          <div className="form-control mb-4">
+            <h5 className="mb-2">Category</h5>
+            <div className="flex flex-wrap gap-2">
+              {categories.map((c, index) => (
                 <button
                   key={index}
                   onClick={updateFilters}
                   type="button"
                   name="category"
                   className={`${
-                    category === c.toLowerCase() ? "active" : ""
-                  } bg-gray-200 text-gray-800 py-1 px-3 rounded-md mr-2 mb-2 `}
+                    category === c.toLowerCase()
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-200 text-gray-600"
+                  } rounded-md px-4 py-2 text-sm`}
                 >
                   {c}
                 </button>
-              );
-            })}
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="mb-4">
-          <h5 className="font-semibold">Company</h5>
-          <select
-            name="company"
-            value={company}
-            onChange={updateFilters}
-            className="border border-gray-300 rounded-md p-2 bg-gray-100 w-full"
-          >
-            {companies.map((c, index) => {
-              return (
+          {/* end of category */}
+          {/* company */}
+          <div className="form-control mb-4">
+            <h5 className="mb-2">Company</h5>
+            <select
+              name="company"
+              value={company}
+              onChange={updateFilters}
+              className="company w-full px-4 py-2 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
+            >
+              {companies.map((c, index) => (
                 <option key={index} value={c}>
                   {c}
                 </option>
-              );
-            })}
-          </select>
-        </div>
-        <div className="mb-4">
-          <h5 className="font-semibold">Colors</h5>
-          <div className="flex colors">
-            {colors.map((c, index) => {
-              if (c === "all") {
-                return (
+              ))}
+            </select>
+          </div>
+          {/* end of company */}
+          {/* colors */}
+          <div className="form-control mb-4">
+            <h5 className="mb-2">Colors</h5>
+            <div className="flex flex-wrap gap-2">
+              {colors.map((c, index) =>
+                c === "all" ? (
                   <button
                     key={index}
                     name="color"
                     onClick={updateFilters}
                     data-color="all"
                     className={`${
-                      color === "all" ? "all-btn active" : "all-btn"
-                    } bg-gray-200 text-gray-800 py-0 px-3 rounded-md mr-2 mb-2 `}
+                      color === "all"
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-200 text-gray-600"
+                    } rounded-md px-4 py-2 text-sm`}
                   >
-                    all
+                    All
                   </button>
-                );
-              }
-              return (
-                <button
-                  key={index}
-                  name="color"
-                  style={{ background: c }}
-                  className={`${
-                    color === c
-                      ? "color-btn active border border-black"
-                      : "color-btn"
-                  } py-1 px-3 rounded-md mr-2 mb-2`}
-                  data-color={c}
-                  onClick={updateFilters}
-                >
-                  {color === c ? <FaCheck /> : null}
-                </button>
-              );
-            })}
+                ) : (
+                  <button
+                    key={index}
+                    name="color"
+                    style={{ background: c }}
+                    className={`${
+                      color === c
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-200 text-gray-600"
+                    } rounded-md px-4 py-2 text-sm`}
+                    data-color={c}
+                    onClick={updateFilters}
+                  >
+                    {color === c ? <FaCheck /> : null}
+                  </button>
+                )
+              )}
+            </div>
           </div>
-        </div>
-        <button
-          type="button"
-          className="clear-btn py-2 px-4 bg-red-500 text-white rounded-md"
+          {/* end of colors */}
+          {/* price */}
+          <div className="form-control mb-4">
+            <h5 className="mb-2">Price</h5>
+            <p className="price">{formatPrice(price)}</p>
+            <input
+              type="range"
+              name="price"
+              onChange={updateFilters}
+              min={min_price}
+              max={max_price}
+              value={price}
+              className="w-full"
+            />
+          </div>
+          {/* end of price */}
+          {/* shipping */}
+          <div className="form-control mb-4">
+            <label htmlFor="shipping" className="cursor-pointer">
+              Free Shipping
+            </label>
+            <input
+              type="checkbox"
+              name="shipping"
+              id="shipping"
+              checked={shipping}
+              onChange={updateFilters}
+              className="ml-2 focus:ring focus:ring-blue-400"
+            />
+          </div>
+          {/* end of  shipping */}
+        </form>
+        <Button
+          variant="contained"
+          size="small"
+          color="error"
           onClick={clearFilters}
+          className="block mx-auto"
         >
           Clear Filters
-        </button>
-        <div className="form-control">
-          <h5>price</h5>
-          <p className="price">{formatPrice(price)}</p>
-          <input
-            type="range"
-            name="price"
-            onChange={updateFilters}
-            min={min_price}
-            max={max_price}
-            value={price}
-          />
-        </div>
-        {/* end of price */}
-        {/* shipping */}
-        <div className="form-control shipping">
-          <label htmlFor="shipping">free shipping</label>
-          <input
-            type="checkbox"
-            name="shipping"
-            id="shipping"
-            checked={shipping}
-            onChange={updateFilters}
-          />
-        </div>
-      </form>
+        </Button>
+      </div>
     </div>
   );
-};
-
-export default Filters;
+}

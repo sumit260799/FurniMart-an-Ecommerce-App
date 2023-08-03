@@ -91,6 +91,6 @@ export const FilterProvider = ({ children }) => {
   );
 };
 
-export const UseFilterContext = () => {
+export const useFilterContext = () => {
   return useContext(FilterContext);
 };

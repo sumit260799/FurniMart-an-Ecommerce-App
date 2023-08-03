@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Poppins&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Poppins&display=swap"); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,8 +11,8 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
   background-color: #f8fafc;
+  font-family: "Khand", sans-serif;
 }
 :root {
   /* dark shades of primary color*/
@@ -43,12 +43,12 @@ body {
   --clr-grey-8: hsl(210, 31%, 80%);
   --clr-grey-9: hsl(212, 33%, 89%);
   --clr-grey-10: hsl(210, 36%, 96%);
-  --clr-white: #0b3c5b;
+  --clr-white: #e8edef;
   --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
   --clr-green-dark: hsl(125, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
-  --clr-black: #222;
+  --clr-black: #000000;
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
   --radius: 0.25rem;
@@ -90,6 +90,8 @@ h2,
 h3,
 h4,
 h5 {
+  font-family: "Array", sans-serif;
+
   letter-spacing: var(--spacing);
   text-transform: capitalize;
   line-height: 1.25;
@@ -201,7 +203,8 @@ p {
   background-color: #f6f6f6;
 }
 .color-btn {
-  @apply w-6 h-6  focus:outline-none rounded-full border-2 bg-gray-700 text-white cursor-pointer opacity-70 flex mr-[0.5rem] items-center justify-center;
+  @apply w-6 h-6  focus:outline-none rounded-full border-2
+   bg-gray-700 text-white cursor-pointer opacity-70 flex mr-[0.5rem] items-center justify-center;
 }
 footer {
   z-index: 999;
@@ -216,27 +219,7 @@ footer {
     border: none;
   }
 }
-
-/* .active {
-  background-color: #f5f7f9;
-  opacity: 1;
-} */
-
-/* .color-btn {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background: #222;
-  margin-right: 0.5rem;
-  border: none;
-  cursor: pointer;
-  opacity: 0.5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  svg {
-    font-size: 0.75rem;
-    color: var(--clr-white);
-  }
+/* .active1 {
+  background: var(--clr-primary-1);
+  color: rgb(255, 145, 0);
 } */

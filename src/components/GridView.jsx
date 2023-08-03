@@ -1,8 +1,9 @@
 import React from "react";
-import Product from "./Product";
 import styled from "styled-components";
+import Product from "./Product";
 
 const GridView = ({ products }) => {
+  // console.log(products);
   return (
     <Wrapper>
       <div className="products-container">
@@ -14,28 +15,25 @@ const GridView = ({ products }) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   img {
     height: 175px;
   }
 
   .products-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-
-    @media screen and (max-width: 700px) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5rem;
-    }
-    @media screen and (max-width: 390px) {
-      grid-template-columns: repeat(1, 1fr);
-      gap: 0.2rem;
-    }
+    gap: 2rem 1.5rem;
   }
 
-  img {
-    height: 155px;
+  @media (min-width: 370px) {
+    .products-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1170px) {
+    .products-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 `;
 

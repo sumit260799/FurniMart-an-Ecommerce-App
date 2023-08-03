@@ -11,17 +11,23 @@ import {
 
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
+    let maxPrice = action.payload.map((p) => p.price);
+    maxPrice = Math.max(...maxPrice);
+    console.log(maxPrice);
     return {
       ...state,
       all_products: [...action.payload],
       filter_products: [...action.payload],
+      filters: {
+        ...state.filters,
+        max_price: maxPrice,
+        price: maxPrice,
+      },
     };
   }
+  //.......................
   if (action.type === SET_LISTVIEW) {
-    return {
-      ...state,
-      Grid_View: false,
-    };
+    return { ...state, Grid_View: false };
   }
   if (action.type === SET_GRIDVIEW) {
     return {
@@ -58,6 +64,7 @@ const filter_reducer = (state, action) => {
 
     return { ...state, filtered_products: tempProducts };
   }
+  //..................
   if (action.type === UPDATE_FILTERS) {
     const { name, value } = action.payload;
     return { ...state, filters: { ...state.filters, [name]: value } };
@@ -94,7 +101,21 @@ const filter_reducer = (state, action) => {
         (product) => product.shipping === true
       );
     }
-    return { ...state, filtered_products: tempProducts };
+    return { ...state, filter_products: tempProducts };
+  }
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        text: "",
+        company: "all",
+        category: "all",
+        color: "all",
+        price: state.filters.max_price,
+        shipping: false,
+      },
+    };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

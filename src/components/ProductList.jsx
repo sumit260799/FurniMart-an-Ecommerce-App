@@ -1,10 +1,10 @@
 import React from "react";
 import GridView from "./GridView";
 import ListView from "./ListView";
-import { UseFilterContext } from "../context/filter_context";
+import { useFilterContext } from "../context/filter_context";
 
 const ProductList = () => {
-  const { filter_products: products, Grid_View } = UseFilterContext();
+  const { filter_products: products, Grid_View } = useFilterContext();
 
   if (products.length < 1) {
     return (
