@@ -5,6 +5,7 @@ import SingleProductPage from "./SingleProductPage";
 import CartPage from "./CartPage";
 import AuthWrapper from "./AuthWrapper";
 import ProductPage from "./ProductPage";
+import CheckOutPage from "./CheckOutPage";
 export {
   Home,
   AboutPage,
@@ -12,5 +13,6 @@ export {
   SingleProductPage,
   CartPage,
   ProductPage,
+  CheckOutPage,
   AuthWrapper,
 };

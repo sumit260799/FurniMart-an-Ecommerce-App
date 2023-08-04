@@ -3,6 +3,7 @@ import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { FiShoppingCart } from "react-icons/fi";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
@@ -102,7 +103,7 @@ const CartButtons = () => {
           onClick={closeSidebar}
         >
           <span className="cart-container">
-            <ShoppingCartIcon color="action" style={{ fontSize: 30 }} />
+            <FiShoppingCart color="action" style={{ fontSize: 30 }} />
             <Badge
               className="cart-value"
               badgeContent={total_items}

@@ -8,6 +8,7 @@ import {
   CartPage,
   AuthWrapper,
   ProductPage,
+  CheckOutPage,
 } from "./pages";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="products/:id" element={<SingleProductPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="/products" element={<ProductPage />} />
+          <Route path="/checkout" element={<CheckOutPage />} />
         </Routes>
         <Footer />
       </Router>

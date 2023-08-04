@@ -1,4 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Poppins&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&family=Poppins&family=Roboto&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,7 +12,8 @@
 
 body {
   background-color: #f8fafc;
-  font-family: "Khand", sans-serif;
+
+  font-family: "Roboto", sans-serif;
 }
 :root {
   /* dark shades of primary color*/
@@ -219,7 +220,3 @@ footer {
     border: none;
   }
 }
-/* .active1 {
-  background: var(--clr-primary-1);
-  color: rgb(255, 145, 0);
-} */
