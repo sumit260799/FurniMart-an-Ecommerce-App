@@ -1,12 +1,9 @@
 [[redirects]]
 from = "/*"
 to = "/index.html"
-<<<<<<< HEAD
 status = 200
 
 [build]
 functions = "./functions"
 
-=======
 status = 200
->>>>>>> ccf7fd467c8d0205a139ec86243089a178a0f989
