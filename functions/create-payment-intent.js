@@ -1,14 +1,15 @@
 const dotenv = require("dotenv");
 dotenv.config();
+import { formatPrice } from "../src/utils/formatPrice";
 const stripe = require("stripe")(process.env.VITE_REACT_APP_STRIPE_SECRET_KEY);
 exports.handler = async function (event, context) {
   const { cart, shipping_fee, total_amount } = JSON.parse(event.body);
-
+  const total = formatPrice(total_amount);
   const calculateOrderAmount = () => {
     // Replace this constant with a calculation of the order's amount
     // Calculate the order total on the server to prevent
     // people from directly manipulating the amount on the client
-    return shipping_fee + total_amount;
+    return shipping_fee + total;
   };
   try {
     // Create a PaymentIntent with the order amount and currency

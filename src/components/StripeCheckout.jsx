@@ -26,6 +26,7 @@ const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+
   const createPaymentIntent = async () => {
     try {
       const { data } = await axios.post(

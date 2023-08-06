@@ -61,7 +61,7 @@ const NavContainer = styled.nav`
   .nav-toggle {
     background: transparent;
     border: transparent;
-    color: var(--clr-primary-5);
+    color: #4992db;
     cursor: pointer;
     svg {
       font-size: 2rem;
