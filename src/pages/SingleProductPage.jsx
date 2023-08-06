@@ -8,7 +8,6 @@ import { useProductsContext } from "../context/products_context";
 import ProductImages from "../components/ProductImages";
 import Stars from "../components/Stars";
 import AddToCart from "../components/AddToCart";
-import { formatPrice } from "../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
 const SingleProductPage = () => {
   const { id } = useParams();
@@ -77,7 +76,7 @@ const SingleProductPage = () => {
             </span>
 
             <h5 className=" price  title-font font-medium text-2xl ">
-              {formatPrice(price)}
+              {price}
             </h5>
             <p className="leading-relaxed">{description}</p>
             <div className="flex mt-2 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>

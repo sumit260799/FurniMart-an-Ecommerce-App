@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { formatPrice } from "../utils/formatPrice";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 const ListView = ({ products }) => {
@@ -13,7 +12,7 @@ const ListView = ({ products }) => {
             <img src={image} alt={name} />
             <div>
               <h4>{name}</h4>
-              <h5 className="price">{formatPrice(price)}</h5>
+              <h5 className="price">{price}</h5>
               <p>{description.substring(0, 150)}...</p>
               <Link to={`/products/${id}`}>
                 <Button size="small" variant="outlined">

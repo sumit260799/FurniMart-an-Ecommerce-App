@@ -1,6 +1,6 @@
 import React from "react";
 import { useFilterContext } from "../context/filter_context";
-import { getUniqueValues, formatPrice } from "../utils/formatPrice";
+import { getUniqueValues } from "../utils/formatPrice";
 import { FaCheck } from "react-icons/fa";
 import { Button } from "@mui/material";
 
@@ -120,7 +120,7 @@ export default function Filters() {
           {/* price */}
           <div className="form-control mb-4">
             <h5 className="mb-2">Price</h5>
-            <p className="price">{formatPrice(price)}</p>
+            <p className="price">{price}</p>
             <input
               type="range"
               name="price"

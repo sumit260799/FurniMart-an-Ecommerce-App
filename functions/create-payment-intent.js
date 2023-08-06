@@ -1,22 +1,22 @@
-const dotenv = require("dotenv");
-dotenv.config();
-import { formatPrice } from "../src/utils/formatPrice";
-const stripe = require("stripe")(process.env.VITE_REACT_APP_STRIPE_SECRET_KEY);
+const stripe = require("stripe");
+
+// Initialize stripe with your secret key
+const stripeInstance = stripe(process.env.VITE_REACT_APP_STRIPE_SECRET_KEY);
+
 exports.handler = async function (event, context) {
   const { cart, shipping_fee, total_amount } = JSON.parse(event.body);
-  const total = formatPrice(total_amount);
+  console.log(shipping_fee + total_amount);
   const calculateOrderAmount = () => {
-    // Replace this constant with a calculation of the order's amount
-    // Calculate the order total on the server to prevent
-    // people from directly manipulating the amount on the client
-    return shipping_fee + total;
+    return shipping_fee + total_amount;
   };
+
   try {
-    // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: calculateOrderAmount(),
-      currency: "usd",
+    // Create a PaymentIntent with the order amount and currency (INR)
+    const paymentIntent = await stripeInstance.paymentIntents.create({
+      amount: calculateOrderAmount() * 100,
+      currency: "inr", // Set the currency to INR
     });
+
     return {
       statusCode: 200,
       body: JSON.stringify({ clientSecret: paymentIntent.client_secret }),

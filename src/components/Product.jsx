@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { formatPrice } from "../utils/formatPrice";
+import { BsCurrencyRupee } from "react-icons/bs";
 const Product = ({ image, name, price, id }) => {
   return (
     <Wrapper>
@@ -13,7 +13,10 @@ const Product = ({ image, name, price, id }) => {
       </div>
       <footer>
         <h5>{name}</h5>
-        <p className="price">{formatPrice(price)}</p>
+        <p className="price flex items-center">
+          <BsCurrencyRupee />
+          {price}
+        </p>
       </footer>
     </Wrapper>
   );
