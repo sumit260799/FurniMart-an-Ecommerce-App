@@ -1,11 +1,12 @@
 const Airtable = require("airtable-node");
-
+const dotenv = require("dotenv");
+dotenv.config();
 const apiKey = process.env.AIRTABLE_API_KEY;
 const baseId = process.env.AIRTABLE_BASE;
 const tableName = process.env.AIRTABLE_TABLE;
 
 const airtable = new Airtable({ apiKey }).base(baseId).table(tableName);
-export const handler = async function (event, context, cb) {
+exports.handler = async function (event, context, cb) {
   const { id } = event.queryStringParameters;
   console.log(id);
   if (id) {
