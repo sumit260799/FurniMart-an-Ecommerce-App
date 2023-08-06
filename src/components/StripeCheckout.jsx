@@ -34,9 +34,7 @@ const CheckoutForm = () => {
         JSON.stringify({ cart, shipping_fee, total_amount })
       );
       setClientSecret(data.clientSecret);
-    } catch (error) {
-      // console.log(error.response)
-    }
+    } catch (error) {}
   };
   useEffect(() => {
     createPaymentIntent();
