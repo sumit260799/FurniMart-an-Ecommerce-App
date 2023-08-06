@@ -1,4 +1,3 @@
-const axios = require("axios");
 const Airtable = require("airtable-node");
 
 const apiKey = process.env.AIRTABLE_API_KEY;
@@ -8,6 +7,7 @@ const tableName = process.env.AIRTABLE_TABLE;
 const airtable = new Airtable({ apiKey }).base(baseId).table(tableName);
 export const handler = async function (event, context, cb) {
   const { id } = event.queryStringParameters;
+  console.log(id);
   if (id) {
     try {
       let product = await airtable.retrieve(id);
