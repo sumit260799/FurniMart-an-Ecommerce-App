@@ -41,8 +41,8 @@ const CartTotals = () => {
           </h4>
 
           {/* Responsive Promo Code Section */}
-          <div className="mt-4 flex flex-col md:flex-row md:items-center">
-            <div className="flex flex-col md:flex-row md:items-center">
+          <div className=" flex flex-col md:flex-row md:items-center">
+            <div className="flex mb-[-10px] mt-5 flex-col md:flex-row md:items-center">
               <input
                 type="text"
                 id="promoCode"
@@ -62,7 +62,7 @@ const CartTotals = () => {
           {/* End Promo Code Section */}
 
           {/* Promo Code Expiration Message */}
-          <p className="text-red-500 text-sm mt-2">{expPromo}</p>
+          <p className="text-red-500 text-sm mt-4">{expPromo}</p>
           {/* End Promo Code Expiration Message */}
         </div>
       </div>

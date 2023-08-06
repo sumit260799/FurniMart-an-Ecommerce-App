@@ -1,4 +1,4 @@
-import furniture1 from "../assets/furniture1.jpg";
+import furniture1 from "../assets/furniture1.png";
 import furniture2 from "../assets/furniture2.jpg";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -66,7 +66,7 @@ const Wrapper = styled.section`
     }
     .main-img {
       width: 100%;
-      height: 550px;
+      height: 590px;
       position: relative;
       border-radius: 15px;
       display: block;

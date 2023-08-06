@@ -1,21 +1,48 @@
 const axios = require("axios");
+const dotenv = require("dotenv");
+dotenv.config();
 const Airtable = require("airtable-node");
 
 exports.handler = async (event, context) => {
   try {
-    const apiKey =
-      "patkxBk1j34THGcUK.97d34594fc8cba730a6d6fb0c32178c4b50b99bc790608d9c46079e7f126d5cb";
-    const baseId = "appgOEXzBggGiF5lI";
-    const tableName = "products";
-    const airtable = new Airtable({ apiKey }).base(baseId).table(tableName);
+    const apiKey = process.env.AIRTABLE_API_KEY;
+    const baseId = process.env.AIRTABLE_BASE;
+    const tableName = process.env.AIRTABLE_TABLE;
 
+    const airtable = new Airtable({ apiKey }).base(baseId).table(tableName);
     const response = await airtable.list({ maxRecords: 200 });
     const records = response.records;
-    console.log(records);
-
+    // const [id, fields] = records;
+    const products = records.map((product) => {
+      const { id, fields } = product;
+      const {
+        name,
+        featured,
+        price,
+        colors,
+        company,
+        description,
+        category,
+        shipping,
+        images,
+      } = fields;
+      const { url } = images[0];
+      return {
+        id,
+        featured,
+        name,
+        price,
+        colors,
+        company,
+        description,
+        category,
+        shipping,
+        image: url,
+      };
+    });
     return {
       statusCode: 200,
-      body: JSON.stringify(records),
+      body: JSON.stringify(products),
     };
   } catch (error) {
     console.error("Error fetching data from Airtable:", error);
