@@ -103,7 +103,6 @@ export const services = [
   },
 ];
 
-export const products_url =
-  "https://furnimart-ecommerce-app.netlify.app/.netlify/functions/airtable-product";
+export const products_url = "/.netlify/functions/airtable-product";
 
-export const single_product_url = `https://furnimart-ecommerce-app.netlify.app/.netlify/functions/airtable-single-product?id=`;
+export const single_product_url = `/.netlify/functions/airtable-single-product?id=`;
